@@ -5,6 +5,7 @@ export const Container = styled.View`
 	width: 100%;
 	justify-content: center;
 	padding: 50px;
+	align-items: center;
 `;
 
 export const WelcomeText = styled.Text`
@@ -13,12 +14,14 @@ export const WelcomeText = styled.Text`
 	font-weight: bold;
 	margin-top: 80px;
 	margin-bottom: 20px;
+	width: 100%;
 `;
 
-export const InfoText = styled.Text`
-	color: #62778c90;
+export const InfoText = styled.Text<{ color?: string }>`
+	color: ${props => (props.color ? props.color : "#62778c90")};
 	font-size: 16px;
 	text-align: justify;
+	width: 100%;
 `;
 
 export const Input = styled.TextInput`
@@ -27,6 +30,7 @@ export const Input = styled.TextInput`
 	border-radius: 15px;
 	margin-top: 30px;
 	margin-bottom: 30px;
+	width: 100%;
 `;
 
 export const StrongText = styled.Text`

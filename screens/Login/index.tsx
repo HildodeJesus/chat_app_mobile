@@ -1,36 +1,28 @@
 import * as S from "./styles";
 import Logo from "../../components/Logo";
 import { useState } from "react";
+import usePhoneNumber from "../../hooks/usePhoneNumber";
 
 export default function Login() {
 	const [currentNumber, setCurrentNumber] = useState("");
+	const { formatPhoneNumber } = usePhoneNumber();
 
-	const formatNumber = (text: string) => {
-		let numberPhoneWithDDD = text;
-		if (numberPhoneWithDDD.length == 11) {
-			const numbers = text.split("");
-			const ddd = numbers[0] + numbers[1];
-			let numberPhone = "";
-			for (let i = 2; i < numbers.length; i++) {
-				numberPhone += numbers[i];
-			}
+	const handledInput = (text: string) => {
+		const formatedNumber = formatPhoneNumber(text);
 
-			numberPhoneWithDDD = `(${ddd}) ${numberPhone}`;
-		}
-
-		setCurrentNumber(numberPhoneWithDDD);
+		setCurrentNumber(formatedNumber);
 	};
 
 	return (
 		<S.Container>
 			<Logo size={70} />
 			<S.WelcomeText>Bem-vindo(a) ao whatsapp</S.WelcomeText>
-			<S.InfoText>
+			<S.InfoText color="#62778c">
 				Informe seu número de celular com ddd para enviarmos o seu código de
 				confirmação
 			</S.InfoText>
 			<S.Input
-				onChangeText={formatNumber}
+				onChangeText={handledInput}
 				value={currentNumber}
 				keyboardType="numeric"
 			/>
